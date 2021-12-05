@@ -12,13 +12,14 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>Attack Algorithm</title>
-        <meta name="description" content="Logical Thinking Skills Learning App" />
+        <meta
+          name="description"
+          content="Logical Thinking Skills Learning App"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-full flex pt-24">
-        <div className="flex items-center">
-          <PixiWindow/>
-        </div>
+      <div className="w-screen h-full flex justify-center bg-black">
+        {/* <PixiWindow /> */}
       </div>
     </div>
   );
