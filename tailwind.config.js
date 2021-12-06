@@ -6,6 +6,9 @@ module.exports = {
       backgroundColor: theme => ({
         'primary': '#FF0000',
         'onPrimary': '#ED635E',
+        }),
+      backgroundImage: theme => ({
+        'primary_img': "url('../public/images/2600276.jpg')"
         })
     },
   },
