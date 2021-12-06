@@ -1,8 +1,13 @@
 module.exports = {
-  purge: [],
+  purge: ["./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: theme => ({
+        'primary': '#FF0000',
+        'onPrimary': '#ED635E',
+        })
+    },
   },
   variants: {
     extend: {},
