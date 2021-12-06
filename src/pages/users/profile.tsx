@@ -16,20 +16,18 @@ const Profile = () => {
   }, [user.image]);
 
   return (
-    <>
-      <section className="w-full h-full flex items-center justify-center">
-        {user && (
-          <div className="">
-            <ImageArea image={image} setImage={setImage} required={true} />
+    <div className="w-full h-screen flex items-center justify-center bg-black">
+      {user && (
+        <div className="">
+          <ImageArea image={image} setImage={setImage} required={true} />
 
-            <div className="text-center">
-              <h2 className="text-5xl">{user.username}</h2>
-              <p>{user.email}</p>
-            </div>
+          <div className="text-center text-white">
+            <h2 className="text-5xl">{user.username}</h2>
+            <p>{user.email}</p>
           </div>
-        )}
-      </section>
-    </>
+        </div>
+      )}
+    </div>
   );
 };
 export default Profile;
