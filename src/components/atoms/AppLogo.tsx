@@ -20,13 +20,15 @@ const AppLogo = (props: Props) => {
   } else {
     return (
       <Link href="/">
-        <Image
-          className=""
-          src={AppLogoImage}
-          alt="AppLogoImage"
-          width={36}
-          height={36}
-        />
+        <>
+          <Image
+            className=""
+            src={AppLogoImage}
+            alt="AppLogoImage"
+            width={36}
+            height={36}
+          />
+        </>
       </Link>
     );
   }
