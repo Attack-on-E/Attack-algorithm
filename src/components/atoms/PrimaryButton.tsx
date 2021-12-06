@@ -1,16 +1,16 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import Link from "next/link";
 
-const PrimaryButton = (props: any) => {
+type PROPS = {
+  buttonText: string;
+  href: string;
+};
+
+const PrimaryButton: React.FC<PROPS> = (props) => {
   return (
-    <Button
-      color="primary"
-      variant="contained"
-      onClick={() => props.onClick()}
-      disabled={props.isDisabled}
-    >
-      {props.label}
-    </Button>
+    <button className="text-center text-3xl text-white w-80 py-5 shadow-2xl border-4 border-red-600 bg-primary bg-opacity-62  font-semibold rounded-full hover:bg-onPrimary">
+      <Link href={props.href}>{props.buttonText}</Link>
+    </button>
   );
 };
 
