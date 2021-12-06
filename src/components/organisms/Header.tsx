@@ -1,15 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { getUser } from "../../../redux/slices/userSlice";
 import AppLogo from "../atoms/AppLogo";
 import { Label } from "../atoms/index";
+import { AfterLoginButton, BeforeLoginButton } from "../molecules/index";
 
 type PROPS = {};
 
 const Header: React.FC<PROPS> = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const user = useSelector(getUser).user;
 
   return (
     <div className="w-screen">
@@ -33,10 +32,18 @@ const Header: React.FC<PROPS> = () => {
         <button className="flex items-center w-1/10 pl-16">
           <AppLogo />
         </button>
-        <div className="flex justify-evenly w-1/4 items-center">
+        <div className="flex justify-evenly w-1/5 items-center">
           <Label labelText="ホーム" href={"/"} />
           <Label labelText="概要" href={"/"} />
           <Label labelText="ランキング" href={"/"} />
+        </div>
+        <div className="w-1/5" />
+        <div className="w-1/5 flex items-center justify-evenly">
+          {user.isSignedIn ? (
+            <AfterLoginButton disabled={true} />
+          ) : (
+            <BeforeLoginButton />
+          )}
         </div>
       </div>
     </div>
