@@ -8,13 +8,6 @@ import {
 } from "../../src/firebase/firebase";
 import Router from "next/router";
 
-export type adduser = {
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
 export type userState = {
   user: {
     uid: string;
@@ -26,11 +19,6 @@ export type userState = {
       path: string;
     };
   };
-};
-
-export type fetchuser = {
-  email: string;
-  password: string;
 };
 
 export const initialState: userState = {
@@ -45,6 +33,17 @@ export const initialState: userState = {
     },
   },
 };
+export type fetchuser = {
+  email: string;
+  password: string;
+};
+
+export type adduser = {
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
 
 export type userimage = {
   uid: string;
@@ -54,13 +53,46 @@ export type userimage = {
   };
 };
 
-export const signOutUser = createAsyncThunk("user/signOutUser", async () => {
-  auth.signOut();
+export const deleteUserImage = createAsyncThunk(
+  "user/deleteUserImage",
+  async (deleteuserimage: userimage) => {
+    const uid = deleteuserimage.uid;
+    const image = deleteuserimage.image;
 
-  return {
-    ...initialState.user,
-  };
-});
+    storage.ref("images").child(image.id).delete();
+
+    const data: any = await (
+      await db.collection("users").doc(uid).get()
+    ).data();
+    const timestamp = FirebaseTimestamp.now();
+
+    const userUpdateData = {
+      updated_at: timestamp,
+      image: {
+        id: "",
+        path: "",
+      },
+    };
+
+    db.collection("users")
+      .doc(uid)
+      .set(userUpdateData, { merge: true })
+      .then(() => {
+        console.log("更新完了");
+      });
+
+    return {
+      uid: uid,
+      username: data.username,
+      email: data.email,
+      image: {
+        id: "",
+        path: "",
+      },
+      isSignedIn: true,
+    };
+  }
+);
 
 export const addUserImage = createAsyncThunk(
   "user/addUserImage",
@@ -95,35 +127,22 @@ export const addUserImage = createAsyncThunk(
   }
 );
 
-export const deleteUserImage = createAsyncThunk(
-  "user/deleteUserImage",
-  async (deleteuserimage: userimage) => {
-    const uid = deleteuserimage.uid;
-    const image = deleteuserimage.image;
+export const signOutUser = createAsyncThunk("user/signOutUser", async () => {
+  auth.signOut();
 
-    storage.ref("images").child(image.id).delete();
-
-    const data: any = await (
-      await db.collection("users").doc(uid).get()
-    ).data();
-    const timestamp = FirebaseTimestamp.now();
-
-    const userUpdateData = {
-      updated_at: timestamp,
-      image: {
-        id: "",
-        path: "",
-      },
-    };
-  }
-);
+  return {
+    ...initialState.user,
+  };
+});
 
 export const addUser = createAsyncThunk(
   "user/addUser",
   async (adduser: adduser) => {
     const { username, email, password, confirmPassword } = adduser;
+
     const result = await auth.createUserWithEmailAndPassword(email, password);
     const user = result.user;
+
     if (user) {
       const uid = user.uid;
       const timestamp = FirebaseTimestamp.now();
@@ -222,8 +241,8 @@ const userSlice = createSlice({
   },
 });
 
-export const getUser = (state: RootState) => state.user;
-
 export const { updateUserState } = userSlice.actions;
+
+export const getUser = (state: RootState) => state.user;
 
 export default userSlice;

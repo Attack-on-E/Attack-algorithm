@@ -131,6 +131,10 @@ const SignUp = () => {
             isDisabled={!isUnique}
           />
         </div>
+        <div className="h-8" />
+        <div className="text-center hover:text-blue-500 underline">
+          <Link href="/signin">アカウントをお持ちの方はこちら</Link>
+        </div>
       </div>
     </div>
   );
