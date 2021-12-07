@@ -2,7 +2,7 @@ import { CommonInput } from "../components/atoms";
 import { useCallback, useState } from "react";
 import { fetchuser, fetchUser } from "../../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import PrimaryButton from "../components/atoms/PrimaryButton";
+import PButton from "../components/atoms/PButton";
 import { getUser } from "../../redux/slices/userSlice";
 import Link from "next/link";
 
@@ -66,10 +66,7 @@ const SignIn = () => {
         />
         <div className="h-16" />
         <div className="flex items-center justify-center">
-          <PrimaryButton
-            label={"ログイン"}
-            onClick={() => validate(fetchuser)}
-          />
+          <PButton label={"ログイン"} onClick={() => validate(fetchuser)} />
         </div>
         <div className="h-8" />
         <div className="text-center hover:text-blue-500 underline">

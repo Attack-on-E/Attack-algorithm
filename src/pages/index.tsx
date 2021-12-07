@@ -20,10 +20,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-screen h-full flex justify-center bg-black">
-        <div className = "w-1/2 h-3/5 mt-24 bg-fire-img">
+        <div className="w-1/2 h-3/5 mt-24 bg-fire-img">
           <Start />
         </div>
-        {/* <PixiWindow /> */}
       </div>
     </div>
   );

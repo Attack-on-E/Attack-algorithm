@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 
-const PrimaryButton = (props: any) => {
+const PButton = (props: any) => {
   return (
     <Button
       color="primary"
@@ -14,4 +14,4 @@ const PrimaryButton = (props: any) => {
   );
 };
 
-export default PrimaryButton;
+export default PButton;
