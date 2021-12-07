@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import PrimaryButton from "../components/atoms/primaryButton";
+import PlayButton from "../components/atoms/PlayButton";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 
@@ -15,10 +15,10 @@ const Start: NextPage = () => {
 
         <div className="flex justify-center items-center text-xl flex-col">
           <div className="mt-20 flex items-center">
-            <PrimaryButton buttonText={"スタート"} href={""}/>
+            <PlayButton buttonText={"スタート"} href={""}/>
           </div>
           <div className="mt-10 flex items-center">
-            <PrimaryButton buttonText={"カスタム"} href={""}/>
+            <PlayButton buttonText={"カスタム"} href={""}/>
           </div>
         </div>
       </div>
