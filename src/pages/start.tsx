@@ -15,7 +15,7 @@ const Start: NextPage = () => {
 
         <div className="flex justify-center items-center text-xl flex-col">
           <div className="mt-20 flex items-center">
-            <PlayButton buttonText={"スタート"} href={""}/>
+            <PlayButton buttonText={"スタート"} href={"/gamePage"}/>
           </div>
           <div className="mt-10 flex items-center">
             <PlayButton buttonText={"カスタム"} href={""}/>
