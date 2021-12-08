@@ -1,4 +1,4 @@
-import { PrimaryButton, CommonInput } from "../components/atoms";
+import { PButton, CommonInput } from "../components/atoms";
 import { useCallback, useState } from "react";
 import { adduser, addUser } from "../../redux/slices/userSlice";
 import { useDispatch } from "react-redux";
@@ -125,7 +125,7 @@ const SignUp = () => {
         />
         <div className="h-16" />
         <div className="flex items-center justify-center">
-          <PrimaryButton
+          <PButton
             label={"アカウントを登録する"}
             onClick={() => validate(adduser)}
             isDisabled={!isUnique}

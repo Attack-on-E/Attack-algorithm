@@ -1,5 +1,6 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import userSlice from "./slices/userSlice";
+import blockSlice from "./slices/blockSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "./storage";
 import { combineReducers } from "redux";
@@ -9,6 +10,7 @@ import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
+  block: blockSlice.reducer,
 });
 
 const persistConfig = {

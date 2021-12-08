@@ -1,11 +1,18 @@
-import { Button } from "../atoms";
+import { PButton } from "../atoms";
+import { auth } from "../../firebase/firebase";
 
 const BeforeLoginButton = () => {
+  const provider = new auth();
+  const handleOnClick = async (provider) => {
+    const res = await socialMediaAuth(provider);
+    console.log(res);
+  };
   return (
     <div className="flex justify-around">
-      <Button buttonText="新規登録" href="/signup" />
-      <div>&nbsp; &nbsp; &nbsp; &nbsp;</div>
-      <Button buttonText="ログイン" href="/signin" />
+      <PButton
+        buttonText="Githubでログイン"
+        onClick={() => handleOnClick(githubProvider)}
+      />
     </div>
   );
 };

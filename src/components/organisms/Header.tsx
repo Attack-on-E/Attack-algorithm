@@ -37,11 +37,7 @@ const Header: React.FC<PROPS> = () => {
         </div>
         <div className="w-5/12" />
         <div className="w-2/12 flex items-center justify-evenly">
-          {user.isSignedIn ? (
-            <AfterLoginButton disabled={false} />
-          ) : (
-            <BeforeLoginButton />
-          )}
+          {user.isSignedIn ? <AfterLoginButton /> : <BeforeLoginButton />}
         </div>
         <div className="w-1/12" />
       </div>

@@ -10,11 +10,7 @@ import React from "react";
 import NoProfileImage from "../../../public/images/no-profile.png";
 import { DropdownIcon } from "../atoms";
 
-type Props = {
-  disabled?: boolean;
-};
-
-const AfterLoginButton = (props: Props) => {
+const AfterLoginButton = () => {
   const dispatch = useDispatch();
   const user = useSelector(getUser).user;
 
@@ -34,91 +30,65 @@ const AfterLoginButton = (props: Props) => {
     handleClose();
   };
 
-  if (props.disabled) {
-    return (
-      <div className="flex items-center justify-end w-full">
-        {user.image.path !== "" ? (
-          <IconButton>
-            <Image
-              className="rounded-full"
-              src={user.image.path}
-              alt="userProfileImage"
-              width={48}
-              height={48}
-            />
-            <DropdownIcon />
-          </IconButton>
-        ) : (
-          <div>
-            <IconButton>
-              <AccountCircleIcon />
-              <DropdownIcon />
-            </IconButton>
-          </div>
-        )}
-      </div>
-    );
-  } else {
-    return (
-      <div className="flex items-center justify-end w-full">
-        {user.image.path !== "" ? (
+  return (
+    <div className="flex items-center justify-end w-full">
+      {user.image.path !== "" ? (
+        <IconButton onClick={handleClick}>
+          <Image
+            className="rounded-full"
+            src={user.image.path}
+            alt="userProfileImage"
+            width={48}
+            height={48}
+          />
+          <DropdownIcon />
+        </IconButton>
+      ) : (
+        <div>
           <IconButton onClick={handleClick}>
+            <AccountCircleIcon />
+            <DropdownIcon />
+          </IconButton>
+        </div>
+      )}
+      <Menu
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <div className="mx-12 mt-2 flex items-center justify-evenly">
+          {user.image.path !== "" ? (
             <Image
               className="rounded-full"
               src={user.image.path}
               alt="userProfileImage"
-              width={48}
-              height={48}
+              width={56}
+              height={56}
             />
-            <DropdownIcon />
-          </IconButton>
-        ) : (
-          <div>
-            <IconButton onClick={handleClick}>
-              <AccountCircleIcon />
-              <DropdownIcon />
-            </IconButton>
-          </div>
-        )}
-        <Menu
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
+          ) : (
+            <Image
+              className="rounded-full"
+              src={NoProfileImage}
+              alt="NoProfileImage"
+              width={56}
+              height={56}
+            />
+          )}
+        </div>
+        <h3 className="text-xl flex items-center justify-evenly border-b mx-2 my-1 border-gray-400">
+          {user.username}
+        </h3>
+        <MenuItem onClick={goToProfile}>プロフィール</MenuItem>
+        <MenuItem
+          onClick={() => {
+            dispatch(signOutUser());
+          }}
         >
-          <div className="mx-12 mt-2 flex items-center justify-evenly">
-            {user.image.path !== "" ? (
-              <Image
-                className="rounded-full"
-                src={user.image.path}
-                alt="userProfileImage"
-                width={56}
-                height={56}
-              />
-            ) : (
-              <Image
-                className="rounded-full"
-                src={NoProfileImage}
-                alt="NoProfileImage"
-                width={56}
-                height={56}
-              />
-            )}
-          </div>
-          <h3 className="text-xl flex items-center justify-evenly border-b mx-2 my-1 border-gray-400">
-            {user.username}
-          </h3>
-          <MenuItem onClick={goToProfile}>プロフィール</MenuItem>
-          <MenuItem
-            onClick={() => {
-              dispatch(signOutUser());
-            }}
-          >
-            ログアウト
-          </MenuItem>
-        </Menu>
-      </div>
-    );
-  }
+          ログアウト
+        </MenuItem>
+      </Menu>
+    </div>
+  );
 };
 export default AfterLoginButton;
